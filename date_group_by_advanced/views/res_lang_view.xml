@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_lang_form_view_inherit" model="ir.ui.view">
+        <field name="name">res.lang.form.view.inherit</field>
+        <field name="model">res.lang</field>
+        <field name="inherit_id" ref="base.res_lang_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[3]" position="after">
+                <group name="date_group_by" string="Custom Date Format for Group By on Tree View">
+                    <group>
+                        <field name="format_type" widget="radio" options="{'horizontal': true}"/>
+                    </group>
+                </group>
+                <group>
+                    <group>
+                        <field name="day_format"/>
+                        <field name="week_format"/>
+                        <field name="month_format"/>
+                    </group>
+                    <group>
+                        <field name="quarter_format"/>
+                        <field name="year_format"/>
+                    </group>
+                </group>
+                <group name="note_date_group_by">
+                    <div class="alert alert-warning">
+                        <h4>Be Careful with week/year formats:</h4>
+                        <li>
+                            yyyy (lower) is mandatory, except* for week+year
+                            formats
+                        </li>
+                        <li>
+                            YYYY (upper) is mandatory for week+year format
+                        </li>
+                        <li>
+                            Ex: 2006-01-01 is W52 2005 in some locales (de_DE), and
+                            W1 2006 for others
+                        </li>
+                        <br/>
+                        <h4>
+                            Mixing both formats, e.g. 'MMM YYYY' would yield wrong results,
+                            such as 2006-01-01 being formatted as "January 2005" in
+                            some locales.
+                        </h4>
+                        <h4>
+                            <a href="http://babel.pocoo.org/docs/dates/#date-fields">
+                                Cfr: http://babel.pocoo.org/docs/dates/#date-fields
+                            </a>
+                        </h4>
+                        <h4>
+                            yyyy = normal year
+                        </h4>
+                        <h4>
+                            w YYYY = ISO week-year
+                        </h4>
+                    </div>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
